@@ -1,6 +1,6 @@
 name: bitchat
 options:
-  bundleIdPrefix: chat.bitchat
+  bundleIdPrefix: com.wintersix.bitchat
   deploymentTarget:
     iOS: 16.0
     macOS: 13.0
@@ -18,7 +18,8 @@ targets:
       - bitchat
     resources:
       - bitchat/Assets.xcassets
-      - bitchat/LaunchScreen.storyboard
+    storyboards:
+      - path: bitchat/LaunchScreen.storyboard
     info:
       path: bitchat/Info.plist
       properties:
@@ -33,17 +34,14 @@ targets:
         UILaunchStoryboardName: LaunchScreen
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
-        UISupportedInterfaceOrientations~ipad:
-          - UIInterfaceOrientationPortrait
-          - UIInterfaceOrientationPortraitUpsideDown
-          - UIInterfaceOrientationLandscapeLeft
-          - UIInterfaceOrientationLandscapeRight
-        UIRequiresFullScreen: false
+        UIRequiresFullScreen: true
         CFBundleURLTypes:
           - CFBundleURLSchemes:
               - bitchat
+        # macOS properties (will be ignored on iOS)
+        LSMinimumSystemVersion: $(MACOSX_DEPLOYMENT_TARGET)
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: chat.bitchat
+      PRODUCT_BUNDLE_IDENTIFIER: com.wintersix.bitchat
       PRODUCT_NAME: bitchat
       INFOPLIST_FILE: bitchat/Info.plist
       ENABLE_PREVIEWS: YES
@@ -53,7 +51,7 @@ targets:
       CODE_SIGN_STYLE: Automatic
       CODE_SIGNING_REQUIRED: YES
       CODE_SIGNING_ALLOWED: YES
-      DEVELOPMENT_TEAM: L3N5LHJD5Y
+      DEVELOPMENT_TEAM: 254LBYMR9T
       ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
       ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: YES
       CODE_SIGN_ENTITLEMENTS: bitchat/bitchat.entitlements
@@ -80,8 +78,16 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLSchemes:
               - bitchat
+        # iOS properties (will be ignored on macOS)
+        UIBackgroundModes:
+          - bluetooth-central
+          - bluetooth-peripheral
+        UILaunchStoryboardName: LaunchScreen
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UIRequiresFullScreen: true
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: chat.bitchat
+      PRODUCT_BUNDLE_IDENTIFIER: com.wintersix.bitchat
       PRODUCT_NAME: bitchat
       INFOPLIST_FILE: bitchat/Info.plist
       ENABLE_PREVIEWS: YES
@@ -90,7 +96,7 @@ targets:
       CODE_SIGN_STYLE: Automatic
       CODE_SIGNING_REQUIRED: YES
       CODE_SIGNING_ALLOWED: YES
-      DEVELOPMENT_TEAM: L3N5LHJD5Y
+      DEVELOPMENT_TEAM: 254LBYMR9T
       ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
       ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: YES
       CODE_SIGN_ENTITLEMENTS: bitchat/bitchat-macOS.entitlements
@@ -115,14 +121,14 @@ targets:
               NSExtensionActivationSupportsWebURLWithMaxCount: 1
               NSExtensionActivationSupportsImageWithMaxCount: 1
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: chat.bitchat.ShareExtension
+      PRODUCT_BUNDLE_IDENTIFIER: com.wintersix.bitchat.ShareExtension
       INFOPLIST_FILE: bitchatShareExtension/Info.plist
       SWIFT_VERSION: 5.0
       IPHONEOS_DEPLOYMENT_TARGET: 16.0
       CODE_SIGN_STYLE: Automatic
       CODE_SIGNING_REQUIRED: YES
       CODE_SIGNING_ALLOWED: YES
-      DEVELOPMENT_TEAM: L3N5LHJD5Y
+      DEVELOPMENT_TEAM: 254LBYMR9T
       CODE_SIGN_ENTITLEMENTS: bitchatShareExtension/bitchatShareExtension.entitlements
       CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION: YES
 
@@ -134,7 +140,7 @@ targets:
     dependencies:
       - target: bitchat_iOS
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: chat.bitchat.tests
+      PRODUCT_BUNDLE_IDENTIFIER: com.wintersix.bitchat.tests
       INFOPLIST_FILE: bitchatTests/Info.plist
       SWIFT_VERSION: 5.0
       IPHONEOS_DEPLOYMENT_TARGET: 16.0
@@ -143,7 +149,7 @@ targets:
       CODE_SIGN_STYLE: Automatic
       CODE_SIGNING_REQUIRED: YES
       CODE_SIGNING_ALLOWED: YES
-      DEVELOPMENT_TEAM: L3N5LHJD5Y
+      DEVELOPMENT_TEAM: 254LBYMR9T
       
   bitchatTests_macOS:
     type: bundle.unit-test
@@ -153,7 +159,7 @@ targets:
     dependencies:
       - target: bitchat_macOS
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: chat.bitchat.tests
+      PRODUCT_BUNDLE_IDENTIFIER: com.wintersix.bitchat.mac.tests
       INFOPLIST_FILE: bitchatTests/Info.plist
       SWIFT_VERSION: 5.0
       MACOSX_DEPLOYMENT_TARGET: 13.0
@@ -162,7 +168,7 @@ targets:
       CODE_SIGN_STYLE: Automatic
       CODE_SIGNING_REQUIRED: YES
       CODE_SIGNING_ALLOWED: YES
-      DEVELOPMENT_TEAM: L3N5LHJD5Y
+      DEVELOPMENT_TEAM: 254LBYMR9T
 
 schemes:
   bitchat (iOS):
