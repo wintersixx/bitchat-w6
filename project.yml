@@ -208,4 +208,4 @@ schemes:
     analyze:
       config: Debug
     archive:
-      config: Release
+      config: Release 
