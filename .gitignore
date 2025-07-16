@@ -59,3 +59,9 @@ __pycache__/
 ## Temporary files
 *.tmp
 *.temp
+
+## Environment variables (keep private)
+.env
+
+## Generated project files (use template instead)
+project.yml

@@ -33,11 +33,11 @@ This project is released into the public domain. See the [LICENSE](LICENSE) file
    brew install xcodegen
    ```
 
-2. Generate the Xcode project:
+2. Generate the project with your credentials:
    ```bash
-   cd bitchat
-   xcodegen generate
+   ./generate.sh
    ```
+   On first run, this will create `.env` from template - edit it with your Apple Developer Team ID and bundle prefix, then run again.
 
 3. Open the generated project:
    ```bash
@@ -160,5 +160,7 @@ The protocol is designed to be platform-agnostic. An Android client can be built
 
 ## MacOS
 
-Want to try this on macos: `just run` will set it up and run from source. 
-Run `just clean` afterwards to restore things to original state for mobile app building and development.
+Want to try this on macos: 
+1. Generate project: `./generate.sh` (creates `.env` from template on first run)
+2. Build and run: `just run` 
+3. Clean up: `just clean` to restore original state
