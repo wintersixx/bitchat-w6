@@ -65,3 +65,4 @@ __pycache__/
 
 ## Generated project files (use template instead)
 project.yml
+*.xcodeproj/project.pbxproj
