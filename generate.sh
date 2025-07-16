@@ -42,16 +42,31 @@ if [ -z "$BITCHAT_BUNDLE_PREFIX" ] || [ "$BITCHAT_BUNDLE_PREFIX" = "com.yourcomp
     exit 1
 fi
 
+if [ -z "$BITCHAT_GROUP_IDENTIFIER" ] || [ "$BITCHAT_GROUP_IDENTIFIER" = "group.com.yourcompany.bitchat" ]; then
+    echo -e "${RED}❌ BITCHAT_GROUP_IDENTIFIER not set in .env file${NC}"
+    exit 1
+fi
+
 echo -e "${GREEN}✅ Using Team ID: $BITCHAT_TEAM_ID${NC}"
 echo -e "${GREEN}✅ Using Bundle: $BITCHAT_BUNDLE_PREFIX${NC}"
+echo -e "${GREEN}✅ Using Group: $BITCHAT_GROUP_IDENTIFIER${NC}"
 
 # Replace placeholders in template and create project.yml
 echo -e "${GREEN}🔄 Replacing placeholders...${NC}"
-sed "s|__TEAM_ID__|$BITCHAT_TEAM_ID|g; s|__BUNDLE_PREFIX__|$BITCHAT_BUNDLE_PREFIX|g" project.yml.template > project.yml
+sed "s|__TEAM_ID__|$BITCHAT_TEAM_ID|g; s|__BUNDLE_PREFIX__|$BITCHAT_BUNDLE_PREFIX|g; s|__GROUP_IDENTIFIER__|$BITCHAT_GROUP_IDENTIFIER|g" project.yml.template > project.yml
+
+# Replace placeholders in source files (temporarily for building)
+echo -e "${GREEN}🔄 Updating source files with credentials...${NC}"
+find . -name "*.swift" -o -name "*.entitlements" | xargs sed -i '' "s|__GROUP_IDENTIFIER__|$BITCHAT_GROUP_IDENTIFIER|g"
 
 # Generate Xcode project
 echo -e "${GREEN}🏗️  Generating Xcode project...${NC}"
 xcodegen generate
 
+# Restore placeholder values in source files to keep git clean
+echo -e "${GREEN}🧹 Restoring placeholders in source files...${NC}"
+find . -name "*.swift" -o -name "*.entitlements" | xargs sed -i '' "s|$BITCHAT_GROUP_IDENTIFIER|__GROUP_IDENTIFIER__|g"
+
 echo -e "${GREEN}🎉 Project generated successfully!${NC}"
-echo -e "${YELLOW}💡 You can now open bitchat.xcodeproj${NC}" 
+echo -e "${YELLOW}💡 You can now open bitchat.xcodeproj${NC}"
+echo -e "${YELLOW}📝 Source files restored to placeholder values for git${NC}" 
