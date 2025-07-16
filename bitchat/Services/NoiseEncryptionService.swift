@@ -28,7 +28,7 @@ class NoiseEncryptionService {
     private var fingerprintToPeerID: [String: String] = [:] // fingerprint -> peerID
     
     // Thread safety
-    private let serviceQueue = DispatchQueue(label: "chat.bitchat.noise.service", attributes: .concurrent)
+    private let serviceQueue = DispatchQueue(label: "__SERVICE_NAME__.noise.service", attributes: .concurrent)
     
     // Security components
     private let rateLimiter = NoiseRateLimiter()

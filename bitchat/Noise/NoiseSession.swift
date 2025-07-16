@@ -51,7 +51,7 @@ class NoiseSession {
     private var handshakeHash: Data?
     
     // Thread safety
-    private let sessionQueue = DispatchQueue(label: "chat.bitchat.noise.session", attributes: .concurrent)
+    private let sessionQueue = DispatchQueue(label: "__SERVICE_NAME__.noise.session", attributes: .concurrent)
     
     init(peerID: String, role: NoiseRole, localStaticKey: Curve25519.KeyAgreement.PrivateKey, remoteStaticKey: Curve25519.KeyAgreement.PublicKey? = nil) {
         self.peerID = peerID
@@ -223,7 +223,7 @@ class NoiseSession {
 class NoiseSessionManager {
     private var sessions: [String: NoiseSession] = [:]
     private let localStaticKey: Curve25519.KeyAgreement.PrivateKey
-    private let managerQueue = DispatchQueue(label: "chat.bitchat.noise.manager", attributes: .concurrent)
+    private let managerQueue = DispatchQueue(label: "__SERVICE_NAME__.noise.manager", attributes: .concurrent)
     
     // Callbacks
     var onSessionEstablished: ((String, Curve25519.KeyAgreement.PublicKey) -> Void)?

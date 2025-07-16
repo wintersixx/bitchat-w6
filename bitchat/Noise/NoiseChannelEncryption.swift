@@ -15,7 +15,7 @@ import os.log
 class NoiseChannelEncryption {
     // Channel keys derived from passwords
     private var channelKeys: [String: SymmetricKey] = [:]
-    private let keyQueue = DispatchQueue(label: "chat.bitchat.noise.channels", attributes: .concurrent)
+    private let keyQueue = DispatchQueue(label: "__SERVICE_NAME__.noise.channels", attributes: .concurrent)
     
     // Key rotation support
     private let keyRotation = NoiseChannelKeyRotation()

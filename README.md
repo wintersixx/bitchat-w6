@@ -34,13 +34,35 @@ This project is released into the public domain. See the [LICENSE](LICENSE) file
    brew install xcodegen
    ```
 
-2. Generate the project with your credentials:
+2. Set up your development credentials:
+   ```bash
+   cp .env.template .env
+   ```
+   
+   Edit `.env` with your Apple Developer information:
+   ```bash
+   # Your 10-character Apple Developer Team ID 
+   # Find this at: https://developer.apple.com/account/#!/membership
+   # Or in Xcode: Project Settings > Signing & Capabilities > Team
+   BITCHAT_TEAM_ID=A1B2C3D4E5
+   
+   # Your reverse domain (without .bitchat suffix)
+   # Example: if you own "mycompany.com", use "com.mycompany"
+   BITCHAT_BUNDLE_PREFIX=com.yourcompany
+   
+   # App group for sharing data (must start with "group.")
+   BITCHAT_GROUP_IDENTIFIER=group.com.yourcompany.bitchat
+   
+   # Internal service name (domain without "com." prefix)  
+   BITCHAT_SERVICE_NAME=yourcompany.bitchat
+   ```
+
+3. Generate the project with your credentials:
    ```bash
    ./generate.sh
    ```
-   On first run, this will create `.env` from template - edit it with your Apple Developer Team ID and bundle prefix, then run again.
 
-3. Open the generated project:
+4. Open the generated project:
    ```bash
    open bitchat.xcodeproj
    ```
@@ -161,7 +183,8 @@ The protocol is designed to be platform-agnostic. An Android client can be built
 
 ## MacOS
 
-Want to try this on macos: 
-1. Generate project: `./generate.sh` (creates `.env` from template on first run)
-2. Build and run: `just run` 
-3. Clean up: `just clean` to restore original state
+Want to try this on macOS:
+1. Set up credentials: `cp .env.template .env` and edit with your Apple Developer Team ID and domain
+2. Generate project: `./generate.sh`
+3. Build and run: `just run` 
+4. Clean up: `just clean` to restore original state

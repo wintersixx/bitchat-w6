@@ -14,8 +14,8 @@ class KeychainManager {
     static let shared = KeychainManager()
     
     // Use consistent service name for all keychain items
-    private let service = "chat.bitchat"
-    private let appGroup = "group.chat.bitchat"
+    private let service = "__SERVICE_NAME__"
+    private let appGroup = "group.__BUNDLE_PREFIX__.bitchat"
     
     private init() {
         // Clean up legacy keychain items on first run

@@ -43,7 +43,7 @@ class NoiseChannelKeyRotation {
     private let keychainPrefix = "channel.epoch."
     
     // Thread safety
-    private let queue = DispatchQueue(label: "chat.bitchat.noise.keyrotation", attributes: .concurrent)
+    private let queue = DispatchQueue(label: "__SERVICE_NAME__.noise.keyrotation", attributes: .concurrent)
     
     // MARK: - Public Interface
     

@@ -142,7 +142,7 @@ class NoiseIdentityPersistenceTests: XCTestCase {
     
     func testKeychainServiceName() {
         // Verify we're using the correct service name
-        let expectedService = "chat.bitchat"
+        let expectedService = "__SERVICE_NAME__"
         
         // Save a test item
         let testKey = "test_service_verification"

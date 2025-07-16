@@ -61,7 +61,7 @@ struct BitchatApp: App {
     
     private func checkForSharedContent() {
         // Check app group for shared content from extension
-        guard let userDefaults = UserDefaults(suiteName: "__GROUP_IDENTIFIER__") else {
+        guard let userDefaults = UserDefaults(suiteName: "group.__BUNDLE_PREFIX__.bitchat") else {
             return
         }
         
